@@ -1,7 +1,7 @@
-calc:calc.o
-	gcc -o calc calc.o
-calc.o:calc.c
-	gcc -c calc.c
+calc_Beta_v1:calc_Beta_v1.o
+	gcc -o calc_beta_v1 calc_Beta_v1.o
+calc_Beta_v1.o:calc_Beta_v1.c
+	gcc -c calc_Beta_v1.c
 clean:
-	rm calc.o
-	rm calc
+	rm calc_Beta_v1.o
+	rm calc_Beta_v1
