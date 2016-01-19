@@ -8,6 +8,12 @@ typedef struct UnionType
 	int num;
 } ElementType;
 
+typedef struct StackType
+{
+	ElementType data;
+	struct StructType* next;
+} StackNode;
+
 int ArrayToInfix(char* input, ElementType* infix)
 {
 	int i = 0;
@@ -56,13 +62,19 @@ void InfixToSuffix(ElementType* infix, ElementType* suffix)
 
 }
 
+int GetResult(ElementType* suffix,int len,int res)
+{
+
+}
+
 int main()
 {
 	char input[20] = {0};
-	int lenOfInfix = 0;
+	int len = 0;
+	int res = 0;
 	ElementType infix[20] = {0};
 	ElementType suffix[20] = {0};
 	fgets(input,20,stdin);
-	lenOfInfix = ArrayToInfix(input,infix);
-	PrintInfix(infix,lenOfInfix);
+	len = ArrayToInfix(input,infix);
+	PrintInfix(infix,len);
 }
