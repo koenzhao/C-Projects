@@ -14,6 +14,35 @@ typedef struct StackType
 	struct StructType* next;
 } StackNode;
 
+void InitStack(StackNode** head, StackNode* top)
+{
+	*head = (StackNode*)malloc(sizeof(StackNode));	
+	top = NULL;
+}
+
+bool StackEmpty(StackNode* top)
+{
+	if(top == NULL)
+		return true;
+	else 
+		return false; 	
+}
+
+void StackPush(StackNode* head, ElementType newData)
+{
+	StackNode* newNode = (StackNode*)malloc(sizeof(StackNode));	
+	if(newData->sign == '\0')
+	{
+		newNode->data->num = newData.num;
+	}
+	else 
+	{
+		newNode->data->sign = newData.sign;
+	}
+	newNode->next = head->next;
+	head->next = newNode;
+}
+
 int ArrayToInfix(char* input, ElementType* infix)
 {
 	int i = 0;
@@ -45,11 +74,11 @@ void PrintInfix(ElementType* infix,int len)
 		return ;
 	for(i = 0;i < len;++i)
 	{
-		if(infix[i].sign == '\0')
+		if(infix[i].sign == '\0')//该位数据为数字
 		{
 			printf("%d",infix[i].num);	
 		}
-		else
+		else//该位数据为运算符
 		{
 			printf(" %c ",infix[i].sign);
 		}
