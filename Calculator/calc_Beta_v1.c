@@ -8,19 +8,19 @@ typedef struct UnionType
 	int num;
 } ElementType;
 
-typedef struct StackType
+typedef struct StackType//栈元素定义
 {
 	ElementType data;
 	struct StructType* next;
 } StackNode;
 
-void InitStack(StackNode** head, StackNode* top)
+void InitStack(StackNode** head, StackNode** top)//初始化栈
 {
 	*head = (StackNode*)malloc(sizeof(StackNode));	
-	top = NULL;
+	*top = NULL;
 }
 
-bool StackEmpty(StackNode* top)
+bool StackEmpty(StackNode* top)//判断栈是否为空
 {
 	if(top == NULL)
 		return true;
@@ -28,19 +28,32 @@ bool StackEmpty(StackNode* top)
 		return false; 	
 }
 
-void StackPush(StackNode* head, ElementType newData)
+void StackPush(StackNode* head, StackNode** top, ElementType newData)//压入栈
 {
 	StackNode* newNode = (StackNode*)malloc(sizeof(StackNode));	
 	if(newData->sign == '\0')
 	{
-		newNode->data->num = newData.num;
+		newNode->data.num = newData.num;
 	}
 	else 
 	{
-		newNode->data->sign = newData.sign;
+		newNode->data.sign = newData.sign;
 	}
-	newNode->next = head->next;
+	newNode->next = head->next;//头插法
 	head->next = newNode;
+	*top = head->next;//更新栈顶指针
+}
+
+ElementType StackPeek(StackNode* top)//查看栈顶元素
+{
+	if(!StackEmpty(top))//判断栈是否为空
+	{
+		return top->data;	
+	}
+	else 
+	{
+		printf("Stack is empty!")
+	}
 }
 
 int ArrayToInfix(char* input, ElementType* infix)
