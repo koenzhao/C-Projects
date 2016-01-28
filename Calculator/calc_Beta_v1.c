@@ -56,11 +56,35 @@ ElementType StackPeek(StackNode* top)//查看栈顶元素
 	}
 }
 
+ElementType StackPop(StackNode* head,StackNode** top)
+{
+    if(!StackEmpty(top))
+    {
+        ElementType popData;
+        if(top->data.sign == '\0')
+        {
+            popData.num = *top->data.num;
+        }
+        else
+        {
+            popData.sign = *top->data.sign;
+        }
+        head->next = *top->next;
+        free(*top);
+        top = head->next;
+        return popData;
+    }
+    else
+    {
+        printf("Stack is empty!");
+    }
+}
+
 int ArrayToInfix(char* input, ElementType* infix)
 {
 	int i = 0;
 	int j = 0;
-	int value = 0;
+    int value = 0;
 	while(input[i] != '\0')
 	{
 		while(input[i] >= '0' && input[i] <= '9')
